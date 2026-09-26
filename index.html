@@ -217,7 +217,30 @@ body:not(.dark){--bg:#eef2fa;--surface:#fff;--soft:#f1f4fb;--line:#d9e1ef;--text
 @media print{body,body.dark,body:not(.dark){--bg:#fff;--surface:#fff;--soft:#f4f6fa;--text:#17263e;--muted:#54647e;--line:#dae2ee;--accent:#007d9a;--green:#8057c2;--tint:#eef6fa;color:var(--text);background:white}.printing-report>#report,.printing-report>#app,.printing-report>#login,.printing-report>#tooltip{display:none!important}#printSurface{display:block!important;position:static;width:100%;background:white;color:var(--text)}#printSurface .report-top{position:static;padding:0 0 10px}#printSurface .report-actions{display:none!important}#printSurface .report-body{padding:10px 0}#printSurface .report-id h2{font-size:21px}#printSurface .report-id p{font-size:11px}#printSurface .kpi{min-height:0;padding:12px}#printSurface .kpi strong{font-size:24px}#printSurface .kpi-symbol{display:none}#printSurface .kpi-title{font-size:9px;min-height:0}#printSurface .section-grid{grid-template-columns:1fr 1fr;break-inside:avoid}#printSurface .chart-panel{padding:12px}#printSurface .chart{height:160px}#printSurface .chart-panel h2{font-size:16px}#printSurface .table-header{padding:10px}#printSurface table td,#printSurface table th{padding:7px;font-size:10px}#printSurface .table-scroll{max-height:none;overflow:visible}#printSurface .insight-grid{display:block;columns:2;column-gap:16px}#printSurface .coaching-card{break-inside:avoid;margin:0 0 12px;padding:12px}#printSurface .coaching-card p{font-size:10px;line-height:1.5}#printSurface .coaching-card h3{font-size:13px}#printSurface .section-title{margin:14px 0}#printSurface .section-title h2{font-size:19px}#printSurface .section-title p{font-size:11px}#printSurface .action-plan{padding:14px}#printSurface .action-plan p{font-size:10px}#printSurface .plan-result{grid-template-columns:1fr 1fr 1fr}#printSurface .plan-result strong{font-size:19px}#printSurface .plan-inputs{display:none}#printSurface .report-scope{font-size:11px}#printSurface .table-panel{overflow:visible}}
     #storeTeamBreakdown table{min-width:1020px}#storeTeamBreakdown td{padding:15px 13px}#storeTeamBreakdown td small{margin-top:5px}.report-body tfoot{background:var(--tint)}.report-body tfoot td{border-top:2px solid var(--line)}
     @media print{#printSurface #storeTeamBreakdown table{min-width:0;width:100%;table-layout:fixed}#printSurface #storeTeamBreakdown td,#printSurface #storeTeamBreakdown th{font-size:8px;white-space:normal;overflow-wrap:anywhere;padding:7px 4px}#printSurface #storeTeamBreakdown td small{font-size:8px}#printSurface #storeTeamBreakdown th:first-child{width:17%}}
-    </style>
+    
+/* Persistent filter navigation and restrained motion */
+:root{--nav-height:180px;--report-top-height:104px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-height) + 18px)}
+.sticky-navigation{position:sticky;top:0;z-index:8;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 5px 16px #00000016}
+.sticky-navigation .topbar{position:static;border-bottom:1px solid var(--line);height:64px}
+.filters.filter-dock{margin:0;border:0;border-radius:0;box-shadow:none;padding:12px 32px 15px;background:var(--surface)}
+.filter-dock .filter-top{margin-bottom:8px}.filter-dock .filter-top h3{font-size:12px}.filter-dock .filter-grid{gap:12px}.filter-dock label{margin-bottom:5px}.filter-dock .filter-grid input,.filter-dock .filter-grid select{height:37px}
+.filter-dock .report-filter-note{display:none;color:var(--muted);font-size:11px;font-weight:400;margin-left:12px}
+dialog .filter-dock{position:sticky;top:var(--report-top-height);z-index:3;padding:10px 24px 13px;border-bottom:1px solid var(--line)}
+dialog .filter-dock .filter-grid{grid-template-columns:repeat(4,minmax(0,1fr))}dialog .filter-dock .report-filter-note{display:inline}
+dialog .report-top{position:sticky;top:0;z-index:4}dialog .report-body{scroll-margin-top:260px}
+#sixMonths,#insights,#promoters,#methodology{scroll-margin-top:calc(var(--nav-height) + 18px)}
+.chart rect[data-chart-month]{animation-duration:.3s}.chart polyline{animation-duration:.45s}.chart circle{animation-duration:.22s}.kpi strong{animation-duration:.2s}
+button{transition:background-color .16s,color .16s,transform .16s,border-color .16s}.panel,.coaching-card{transition:border-color .18s,box-shadow .18s}.kpi:hover{transform:translateY(-2px);box-shadow:0 7px 16px #00000014}
+.scroll-reveal{transition:opacity .3s ease,transform .3s ease;transform:translateY(8px)}
+dialog::backdrop{backdrop-filter:none;background:#050d1bc9}
+dialog[open]{animation:dialog-enter .2s ease-out} @keyframes dialog-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:1100px){.filter-dock .filter-grid{display:flex;overflow-x:auto;padding:2px 3px 7px;scrollbar-width:thin;overscroll-behavior-x:contain}.filter-dock .filter-grid>div{flex:0 0 158px}.filters.filter-dock{padding:10px 20px}.filter-dock .filter-grid>div:last-child{flex-basis:205px}dialog .filter-dock .filter-grid{display:flex}dialog .filter-dock{padding:10px 18px}}
+@media(max-width:760px){.sticky-navigation .topbar{height:62px}.filters.filter-dock{padding:9px 14px}.filter-dock .filter-grid>div{flex-basis:145px}.filter-dock .filter-top h3{font-size:11px}.filter-dock .report-filter-note{font-size:10px;margin-left:7px}dialog .report-top{position:sticky;padding:12px;gap:10px}dialog .filter-dock{padding:8px 12px}dialog .report-top .report-actions{gap:5px}dialog .report-top button{font-size:11px;padding:8px}.filter-dock .filter-grid input,.filter-dock .filter-grid select{font-size:12px}dialog{max-height:95vh;width:97vw}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}dialog[open]{animation:none}*{transition:none!important;animation:none!important}}
+@media print{.sticky-navigation,.filter-dock{display:none!important}html{scroll-padding:0}dialog .report-top{position:static}#printSurface .filter-dock{display:none!important}}
+dialog .filter-dock{z-index:20}dialog .report-top{z-index:21}
+</style>
 </head>
 <body>
   <section id="login" class="login">
@@ -264,7 +287,8 @@ body:not(.dark){--bg:#eef2fa;--surface:#fff;--soft:#f1f4fb;--line:#d9e1ef;--text
     const MONTHS = ['Apr-26','May-26','Jun-26','Jul-26','Aug-26','Sep-26'];
     const $ = id => document.getElementById(id);
     const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    const num = value => new Intl.NumberFormat('en-IN').format(value);
+    const numberFormatter = new Intl.NumberFormat('en-IN');
+    const num = value => numberFormatter.format(value);
     const inr = value => '₹' + num(value);
     const avg = list => list.length ? list.reduce((a,b)=>a+b,0)/list.length : 0;
     const pct = value => value.toFixed(1) + '%';
@@ -367,7 +391,7 @@ body:not(.dark){--bg:#eef2fa;--surface:#fff;--soft:#f1f4fb;--line:#d9e1ef;--text
     $('logout').onclick=logout; $('sideLogout').onclick=logout;
     $('reset').onclick=resetFilters;
     for(const id of ['month',...Object.keys(fields),'sort'])$(id).addEventListener('change',render);
-    $('search').addEventListener('input',render);
+    let searchRenderTimer; $('search').addEventListener('input',()=>{clearTimeout(searchRenderTimer);searchRenderTimer=setTimeout(render,120);});
     $('salesMode').onclick=e=>{const b=e.target.closest('[data-mode]');if(!b)return;chartMode=b.dataset.mode;document.querySelectorAll('[data-mode]').forEach(b=>{b.classList.toggle('active',b.dataset.mode===chartMode);b.setAttribute('aria-pressed',b.dataset.mode===chartMode);});render();};
     $('tableBody').onclick=e=>{const b=e.target.closest('[data-promoter]');if(b)openReport(b.dataset.promoter);};
     $('export').onclick=()=>exportRows(filteredRows());$('printAll').onclick=()=>window.print();
@@ -508,6 +532,33 @@ body:not(.dark){--bg:#eef2fa;--surface:#fff;--soft:#f1f4fb;--line:#d9e1ef;--text
       if(teamTable)teamTable.after(detail);else body.appendChild(detail);
       const sourceTable=body.querySelector('.table-panel table');if(sourceTable){const sm=storeMonths([code],MONTHS),f=document.createElement('tfoot');f.innerHTML=`<tr><td><b>Total / average</b></td><td class="num"><b>${num(sum(sm,'overall'))}</b></td><td class="num"><b>${num(totalQty)}</b></td><td class="num"><b>${inr(totalValue)}</b></td><td class="num">${pct(avg(sm.map(m=>m.qtyShare)))}</td><td class="num">${pct(avg(sm.map(m=>m.valShare)))}</td></tr>`;sourceTable.appendChild(f);}
     };
+
+
+    // Reuse source store context and number formatting across all renders.
+    const cachedStoreContext=new Map();
+    storeMonths=function(codes,months=selectedMonths()){
+      if(!cachedStoreContext.has(brand)){
+        const entries=new Map();
+        for(const p of brandRows())for(const m of p.months){const key=p.storeCode+'|'+m.month,existing=entries.get(key);if(!existing||(!(existing.overall||existing.qtyShare||existing.valShare)&&(m.overall||m.qtyShare||m.valShare)))entries.set(key,m);}
+        cachedStoreContext.set(brand,entries);
+      }
+      const entries=cachedStoreContext.get(brand);return codes.flatMap(code=>months.map(mon=>entries.get(code+'|'+mon)));
+    };
+    const filterDock=document.querySelector('.filters'),topNavigation=document.createElement('div'),topbar=document.querySelector('.topbar');
+    topNavigation.className='sticky-navigation';topbar.before(topNavigation);topNavigation.append(topbar,filterDock);filterDock.classList.add('filter-dock');
+    filterDock.querySelector('h3').innerHTML='Dashboard filters<span class="report-filter-note">Changes return to the filtered dashboard</span>';
+    function measureNavigation(){document.documentElement.style.setProperty('--nav-height',topNavigation.offsetHeight+'px');const rt=$('reportContent').querySelector('.report-top');if(rt)$('report').style.setProperty('--report-top-height',rt.offsetHeight+'px');}
+    let navigationObserver;if('ResizeObserver' in window){navigationObserver=new ResizeObserver(measureNavigation);navigationObserver.observe(topNavigation);}
+    function putFiltersInReport(){const heading=$('reportContent').querySelector('.report-top');if(!heading)return;heading.after(filterDock);measureNavigation();if(navigationObserver)navigationObserver.observe(heading);}
+    const reportBeforeDock=openReport;openReport=function(id){reportBeforeDock(id);if($('report').open)putFiltersInReport();};
+    const storeBeforeDock=openStore;openStore=function(code){storeBeforeDock(code);if($('report').open)putFiltersInReport();};
+    $('report').addEventListener('close',()=>{topNavigation.appendChild(filterDock);measureNavigation();});
+    function returnToFilteredDashboard(){if(!$('report').open)return;const focused=document.activeElement;$('report').close();if(focused&&filterDock.contains(focused))focused.focus({preventScroll:true});}
+    // Capture ensures controls return to the dashboard before their existing filter handlers run.
+    filterDock.addEventListener('change',returnToFilteredDashboard,true);
+    filterDock.addEventListener('input',returnToFilteredDashboard,true);
+    filterDock.addEventListener('click',e=>{if(e.target.closest('#reset'))returnToFilteredDashboard();},true);
+    window.addEventListener('resize',measureNavigation,{passive:true});measureNavigation();
 
   </script>
 </body>
